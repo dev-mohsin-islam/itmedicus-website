@@ -149,6 +149,7 @@ async function build() {
     'favicon-32.png',
     'favicon-16.png',
     'og-default.png',
+    'hero-bg.jpg',
   ]) {
     await cp(path.join(root, 'src/assets/img', f), path.join(dist, 'assets/img', f));
   }

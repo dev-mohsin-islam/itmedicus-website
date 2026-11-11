@@ -38,6 +38,14 @@ one-line edit in `src/content.mjs` followed by `node build.mjs`.
 
 | 1.3a | **WhatsApp button** | `whatsappFab()` in `src/layout.mjs` | A floating chat button appears on every page, plus a WhatsApp block on the contact page, footer and product sidebars. If you would rather it appear only on the contact page, remove the `${whatsappFab()}` call from `doc()`. |
 
+## 1c. Sponsorship / advertising inventory
+
+| # | Item | Where | Current state |
+| --- | --- | --- | --- |
+| 1c.1 | **Sponsored placements** | `sponsorship` on DIMS, Patient Aid and SkinVD in `src/content.mjs` | Each of those product pages now carries an **Advertising & sponsorship** section: a pitch, three format categories and a *Discuss sponsorship* button that opens the contact form with "Partnership" preselected. The pharmaceutical service and industries copy reference the inventory too. |
+| 1c.2 | **Confirm the inventory** | same | The three format lines are deliberately generic ("in-app placements", "sponsored content", "product information in context") because the exact ad units weren't supplied. Replace them with the real formats from your media pack. |
+| 1c.3 | **Advertising policy** | `note` in each `sponsorship` block | The section states placements are reviewed against an advertising policy and labelled as sponsored. DIMS publishes such a policy; **confirm it also covers Patient Aid and SkinVD**, and link to the policy page once it exists. |
+
 ## 2. Product accuracy
 
 The product copy is written from the blueprint's one-line descriptions plus the

@@ -170,6 +170,18 @@
       status.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest' });
     };
 
+    // Links such as /contact/?type=Partnership preselect the enquiry type.
+    var typeSelect = form.querySelector('#enquiryType');
+    if (typeSelect) {
+      var wanted = new URLSearchParams(window.location.search).get('type');
+      if (wanted) {
+        var match = Array.prototype.find.call(typeSelect.options, function (option) {
+          return option.value.toLowerCase() === wanted.toLowerCase();
+        });
+        if (match) typeSelect.value = match.value;
+      }
+    }
+
     var setError = function (field, message) {
       var wrap = field.closest('.field');
       if (!wrap) return;
@@ -283,9 +295,11 @@
 
   if (counters.length && !reduceMotion && 'IntersectionObserver' in window) {
     var runCount = function (el) {
-      var target = parseInt(el.getAttribute('data-count'), 10);
+      var target = parseFloat(el.getAttribute('data-count'));
       if (!isFinite(target) || target <= 0) return;
 
+      var decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+      var suffix = el.getAttribute('data-suffix') || '';
       var duration = 850;
       var started = null;
 
@@ -294,9 +308,9 @@
         var p = Math.min(1, (ts - started) / duration);
         // easeOutCubic: fast start, soft landing on the final value
         var eased = 1 - Math.pow(1 - p, 3);
-        el.textContent = String(Math.round(target * eased));
+        el.textContent = (target * eased).toFixed(decimals) + suffix;
         if (p < 1) window.requestAnimationFrame(frame);
-        else el.textContent = String(target);
+        else el.textContent = target.toFixed(decimals) + suffix;
       };
 
       window.requestAnimationFrame(frame);

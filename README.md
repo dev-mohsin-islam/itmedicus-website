@@ -200,6 +200,20 @@ drop it in `src/assets/img/` and point `.brandlogo` at it — nothing else needs
 change. A vector master is worth requesting: it keeps the mark crisp at any size and
 is what a printer or signage supplier will ask for.
 
+### Hero artwork
+
+The homepage hero sits on a generated texture — a pale bone field with a node
+network, molecular rings and an ECG trace, faded out across the left third so the
+headline keeps AA contrast. It is produced deterministically:
+
+```bash
+python tools/hero-bg.py     # writes src/assets/img/hero-bg.jpg (~38 KB)
+```
+
+Fifteen animated points sit over it (CSS keyframes: pulse plus a slow drift), masked
+away from the text column and disabled entirely on phones and under
+`prefers-reduced-motion`.
+
 ### Product artwork
 
 Seven of the eight products now carry their real app icon, supplied by the client

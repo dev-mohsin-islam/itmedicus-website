@@ -190,7 +190,6 @@ export function header(current = '/') {
     </div>
     <nav class="mobile-nav-body" aria-label="Mobile">
       <ul class="mobile-list">
-        <li><a href="/"${current === '/' ? ' aria-current="page"' : ''}>Home</a></li>
         ${nav
           .map((i) => `<li><a href="${i.href}"${isActive(i.href) ? ' aria-current="page"' : ''}>${i.label}</a></li>`)
           .join('')}

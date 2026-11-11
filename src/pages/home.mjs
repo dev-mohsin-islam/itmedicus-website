@@ -90,8 +90,33 @@ function heroVisual() {
     </div>`;
 }
 
+/* Animated nodes over the hero artwork — decorative, never announced. */
+function heroNodes() {
+  const dots = [
+    [118, 96, 2.6, 0.0], [246, 210, 2.0, -1.1], [372, 118, 3.2, -2.2],
+    [520, 268, 2.2, -0.6], [664, 92, 2.4, -3.1], [812, 232, 3.0, -1.7],
+    [1046, 120, 2.6, -2.6], [1188, 292, 2.2, -0.9], [1310, 154, 3.0, -3.6],
+    [210, 392, 2.4, -1.4], [402, 470, 2.0, -2.8], [702, 430, 2.6, -0.4],
+    [980, 470, 2.2, -2.0], [1236, 486, 2.8, -1.2], [86, 548, 2.2, -3.4],
+  ];
+
+  return `<div class="hero-nodes" aria-hidden="true">
+      <svg viewBox="0 0 1440 640" preserveAspectRatio="xMidYMid slice" focusable="false">
+        ${dots
+          .map(
+            ([cx, cy, r, delay], i) => `<g class="hn-drift hn-drift--${(i % 3) + 1}">
+          <circle class="hn" cx="${cx}" cy="${cy}" r="${r}" style="animation-delay:${delay}s"/>
+          <circle class="hn-halo" cx="${cx}" cy="${cy}" r="${r * 3.4}" style="animation-delay:${delay}s"/>
+        </g>`
+          )
+          .join('')}
+      </svg>
+    </div>`;
+}
+
 function hero() {
   return `<section class="hero" aria-labelledby="hero-title">
+      ${heroNodes()}
       <div class="shell hero-inner">
         <div class="hero-copy">
           <p class="kicker"><span class="kicker-rule" aria-hidden="true"></span>Healthcare technology · Digital innovation</p>
@@ -120,15 +145,22 @@ function proofStrip() {
         </div>
         <div class="proof-strip reveal">
           ${proofPoints
-            .map(
-              (p) => `<div class="proof-item">
+            .map((p) => {
+              // "10M+" animates as 0 → 10 plus its suffix; "4.6" keeps one decimal.
+              const parts = /^(\d+(?:\.\d+)?)(.*)$/.exec(p.value);
+              const numeric = parts ? parts[1] : '';
+              const suffix = parts ? parts[2] : '';
+              const decimals = numeric.includes('.') ? 1 : 0;
+              const animatable = numeric.replace('.', '').length <= 2 ? numeric : '';
+
+              return `<div class="proof-item">
               <p class="proof-value">
                 <span class="sr-only">${p.value}</span>
-                <span data-count="${/^\d{1,2}$/.test(p.value) ? p.value : ''}" aria-hidden="true">${p.value}</span>
+                <span data-count="${animatable}" data-suffix="${suffix}" data-decimals="${decimals}" aria-hidden="true">${p.value}</span>
               </p>
               <p class="proof-label">${p.label}</p>
-            </div>`
-            )
+            </div>`;
+            })
             .join('')}
         </div>
       </div>

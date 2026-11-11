@@ -264,7 +264,11 @@ const counters = await evalJs(`(() => {  document.querySelector('.proof-strip').
     [...document.querySelectorAll('[data-count]')].map(e => e.textContent.trim())
   ), 1500));
 })()`);
-check('proof numbers count up to their values', counters.join(',') === '2011,8,4,3', counters.join(', '));
+check(
+  'proof numbers settle at their published values',
+  counters.join('|') === '2011|10M+|4.6|8',
+  counters.join(', ')
+);
 
 const tilt = await evalJs(`(() => {
   const card = document.querySelector('.product-card-link');

@@ -174,6 +174,26 @@ export function productPage(product) {
               : ''
           }
 
+          ${
+            product.sponsorship
+              ? `<div class="pd-section" id="sponsorship">
+            <h2>Advertising &amp; sponsorship</h2>
+            <div class="sponsor">
+              <div>
+                <p class="sponsor-pitch">${product.sponsorship.pitch}</p>
+                <ul class="sponsor-list">
+                  ${product.sponsorship.formats.map((f) => `<li>${icon('check')}<span>${f}</span></li>`).join('')}
+                </ul>
+              </div>
+              <div class="sponsor-side">
+                ${btn({ href: '/contact/?type=Partnership', label: 'Discuss sponsorship', iconName: 'arrow-right' })}
+                <p class="sponsor-note">${product.sponsorship.note}</p>
+              </div>
+            </div>
+          </div>`
+              : ''
+          }
+
           <div class="pd-section">
             <h2>Platforms</h2>
             <div class="tag-row">

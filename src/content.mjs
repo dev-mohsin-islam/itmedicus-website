@@ -48,6 +48,7 @@ export const stores = {
 };
 
 export const nav = [
+  { label: 'Home', href: '/' },
   { label: 'About', href: '/about/' },
   { label: 'Products', href: '/products/', menu: true },
   { label: 'Services', href: '/services/' },
@@ -146,6 +147,16 @@ export const products = [
       ],
       note: 'Plans are sold through the app and its web portal; current pricing is shown at purchase.',
     },
+    sponsorship: {
+      pitch:
+        'Pharmaceutical companies can reach prescribers inside DIMS itself — alongside the drug information they already look up, rather than in a separate channel.',
+      formats: [
+        'In-app placements alongside relevant drug entries',
+        'Sponsored clinical or educational content',
+        'Product information presented in context',
+      ],
+      note: 'All placements are reviewed against our advertising policy and labelled as sponsored. Formats and availability vary by app — ask for the current media pack.',
+    },
     seo: {
       title: 'DIMS App — Drug Information for Doctors | ITmedicus',
       description:
@@ -223,6 +234,16 @@ export const products = [
       ],
       premium: ['Additional health content and digital tools inside the app'],
       note: 'Premium content is optional. Confirm the current premium feature list with the product team before publishing detailed claims.',
+    },
+    sponsorship: {
+      pitch:
+        'Patient Aid reaches people researching medicines, symptoms and everyday health questions. Pharmaceutical companies can sponsor placements that sit next to the content their audience is already reading.',
+      formats: [
+        'In-app placements alongside health content',
+        'Sponsored health and medicine articles',
+        'Product information presented in context',
+      ],
+      note: 'All placements are reviewed against our advertising policy and labelled as sponsored. Formats and availability vary by app — ask for the current media pack.',
     },
     seo: {
       title: 'Patient Aid App — Medicine & Health Information | ITmedicus',
@@ -467,6 +488,16 @@ export const products = [
       'Reference for common presentations',
       'Mobile study experience',
     ],
+    sponsorship: {
+      pitch:
+        'SkinVD is used by dermatology practitioners and trainees. Pharmaceutical companies can sponsor placements beside dermatology reference and learning content.',
+      formats: [
+        'In-app placements within dermatology topics',
+        'Sponsored educational content',
+        'Product information presented in context',
+      ],
+      note: 'All placements are reviewed against our advertising policy and labelled as sponsored. Formats and availability vary by app — ask for the current media pack.',
+    },
     seo: {
       title: 'SkinVD App — Dermatology Reference & Learning | ITmedicus',
       description:
@@ -628,7 +659,7 @@ export const services = [
     summary:
       'Digital platforms and engagement solutions that help pharmaceutical organisations communicate product and medical information to professional audiences.',
     detail:
-      'We help pharmaceutical organisations explore digital platforms and professional engagement solutions. Projects may include product information platforms, DIMS Gateway registration so a company can maintain its own product data, digital communication tools, campaign support and workflow software, subject to agreed scope and compliance review.',
+      'We help pharmaceutical organisations explore digital platforms and professional engagement solutions. Projects may include product information platforms, DIMS Gateway registration so a company can maintain its own product data, digital communication tools, in-app sponsorship across DIMS, Patient Aid and SkinVD, campaign support and workflow software, subject to agreed scope and compliance review.',
     cta: 'Talk to Our Pharma Solutions Team',
     icon: 'molecule',
     deliverables: ['Product information platforms', 'Field engagement tools', 'Campaign support', 'Compliance-reviewed content flow'],
@@ -695,7 +726,7 @@ export const industries = [
     slug: 'pharmaceutical',
     name: 'Pharmaceutical companies',
     summary:
-      'Support product information, professional engagement and digital transformation initiatives with fit-for-purpose technology.',
+      'Support product information, professional engagement, in-app sponsorship and digital transformation initiatives with fit-for-purpose technology.',
     icon: 'molecule',
     products: ['mdoctor-agent', 'dims'],
     services: ['pharmaceutical-digital-solutions', 'custom-healthcare-software'],

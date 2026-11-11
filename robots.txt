@@ -1,0 +1,6 @@
+# robots.txt — ITmedicus
+User-agent: *
+Allow: /
+Disallow: /404.html
+
+Sitemap: https://itmedicus.com/sitemap.xml

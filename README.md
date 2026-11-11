@@ -4,7 +4,7 @@ A complete, production-ready corporate website for ITmedicus: healthcare technol
 medical applications and pharmaceutical digital solutions.
 
 Built from the approved content and design blueprint (10 November 2026). Every page,
-component and piece of copy in `dist/` is generated from the files in `src/` — no
+component and piece of copy in the project root is generated from the files in `src/` — no
 framework, no runtime dependencies, no build tooling to install.
 
 ---
@@ -12,7 +12,7 @@ framework, no runtime dependencies, no build tooling to install.
 ## Quick start
 
 ```bash
-node build.mjs        # generate the site into ./dist
+node build.mjs        # generate the site into the project root
 node serve.mjs        # preview at http://localhost:5180
 ```
 
@@ -30,6 +30,24 @@ A server is already running at **http://localhost:5180** if the preview was star
 for you. Internal links are page-relative, so the build also works unchanged when
 deployed under a subdirectory — but full in-site navigation needs a server, because
 each route is a directory containing an `index.html`.
+
+---
+
+## Where the site lives
+
+`node build.mjs` writes the finished site to the **project root**, so `index.html`
+sits at the top level and the folder can be uploaded or zipped as-is:
+
+```
+index.html  about/  products/  services/  …  assets/  sitemap.xml  robots.txt
+build.mjs  serve.mjs  src/  tools/  qa/       ← tooling and sources
+```
+
+The build only ever deletes its own output (the page folders, `assets/`,
+`sitemap.xml`, `robots.txt`, `404.html`) and refuses to clean if anything looks
+unexpected, because the same folder holds `src/` and `tools/`. The preview server
+refuses to serve `src/`, `tools/`, `qa/` or the build scripts, so a local preview
+never exposes source.
 
 ---
 
@@ -65,7 +83,8 @@ src/
     img/                  logo variants, favicons, app mark, social card
   og/og-card.html         source for the share image
 assets/source/            master brand artwork, as downloaded
-dist/                     generated output — never edit by hand
+index.html, about/, …      generated output — never edit by hand
+assets/                   generated css, js and images
 tools/
   qa.mjs                  headless-browser QA: every route, console errors, overflow, screenshots
   audit.mjs               static audit: links, metadata, headings, JSON-LD, sitemap
@@ -293,12 +312,18 @@ checks are for usability, not security.
 
 ## Deployment
 
-`dist/` is a plain static site. Upload it to any static host (Netlify, Cloudflare
+The project root is a plain static site — `index.html` sits at the top. Upload it to any static host (Netlify, Cloudflare
 Pages, S3 + CloudFront, nginx).
 
+0. **Upload the site, not the workspace.** Because the build sits beside the source,
+   upload only: `index.html`, `404.html`, `sitemap.xml`, `robots.txt`, `assets/` and
+   the page folders (`about/ careers/ contact/ industries/ insights/ privacy/
+   products/ services/ terms/`). Leave `src/`, `tools/`, `qa/`, `build.mjs`,
+   `serve.mjs` and the markdown files off the server — they are not needed to serve
+   the site, and `src/assets/source/` contains the brand masters.
 1. **Trailing slashes.** Every route is a directory with an `index.html`, so URLs end
    in `/`. Keep that behaviour; configure permanent redirects from any legacy URLs.
-2. **404 page.** Point the host's not-found handler at `dist/404.html`.
+2. **404 page.** Point the host's not-found handler at `404.html`.
 3. **Canonical host.** All absolute URLs and the sitemap use `https://itmedicus.com`.
    If the launch domain differs, change `site.origin` in `src/content.mjs` and rebuild.
 4. **Cache headers.** Assets can be cached long-term; HTML should revalidate. If you
@@ -347,5 +372,6 @@ inherited from the blueprint and marked for confirmation. See
 the current office address and phone number, per-product platform and feature
 accuracy, direct store-listing URLs, and legal review of the privacy policy and
 terms.
-#   i t m e d i c u s - w e b s i t e  
+#   i t m e d i c u s - w e b s i t e 
+ 
  

@@ -1,0 +1,359 @@
+/* ==========================================================================
+   ITmedicus — motion layer
+
+   Loaded last so it can refine the static styles. Everything here is either
+   decorative or additive: with JavaScript disabled the page is fully readable,
+   and with `prefers-reduced-motion: reduce` all of it collapses to no motion.
+   ========================================================================== */
+
+@keyframes au-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes au-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes au-visual-in {
+  from {
+    opacity: 0;
+    transform: translateY(26px) scale(0.965);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes au-draw {
+  from {
+    stroke-dashoffset: var(--dash, 600);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes au-rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --------------------------------------------------- page entrance -------- */
+
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: au-fade-in 0.22s var(--ease) reverse both;
+}
+
+::view-transition-new(root) {
+  animation: au-fade-in 0.32s var(--ease-out) both;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Hero: a short choreographed sequence rather than everything at once. */
+  .js .hero-copy > * {
+    animation: au-fade-up 0.9s var(--ease-out) both;
+  }
+
+  .js .hero-copy > *:nth-child(1) {
+    animation-delay: 0.05s;
+  }
+  .js .hero-copy > *:nth-child(2) {
+    animation-delay: 0.13s;
+  }
+  .js .hero-copy > *:nth-child(3) {
+    animation-delay: 0.24s;
+  }
+  .js .hero-copy > *:nth-child(4) {
+    animation-delay: 0.34s;
+  }
+  .js .hero-copy > *:nth-child(5) {
+    animation-delay: 0.42s;
+  }
+
+  .js .hero-visual {
+    animation: au-visual-in 1.15s var(--ease-out) 0.16s both;
+  }
+
+  /* The pulse line draws itself in the composition. */
+  .js .hv-arc path {
+    stroke-dasharray: var(--dash, 600);
+    animation: au-draw 1.6s var(--ease-out) 0.5s both;
+  }
+
+  /* Inner-page heroes follow the same rhythm, one beat shorter. */
+  .js .page-hero-inner > * {
+    animation: au-fade-up 0.85s var(--ease-out) both;
+  }
+  .js .page-hero-inner > *:nth-child(1) {
+    animation-delay: 0.04s;
+  }
+  .js .page-hero-inner > *:nth-child(2) {
+    animation-delay: 0.12s;
+  }
+  .js .page-hero-inner > *:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+  .js .page-hero-inner > *:nth-child(4) {
+    animation-delay: 0.28s;
+  }
+
+  .js .pd-hero .pd-title,
+  .js .pd-hero .pd-lead,
+  .js .pd-hero .pd-meta,
+  .js .pd-hero .pd-actions {
+    animation: au-fade-up 0.85s var(--ease-out) both;
+  }
+  .js .pd-hero .pd-title {
+    animation-delay: 0.06s;
+  }
+  .js .pd-hero .pd-lead {
+    animation-delay: 0.14s;
+  }
+  .js .pd-hero .pd-meta {
+    animation-delay: 0.22s;
+  }
+  .js .pd-hero .pd-actions {
+    animation-delay: 0.3s;
+  }
+  .js .pd-visual {
+    animation: au-visual-in 1s var(--ease-out) 0.18s both;
+  }
+
+  .js .article-head h1 {
+    animation: au-fade-up 0.9s var(--ease-out) 0.06s both;
+  }
+  .js .article-meta {
+    animation: au-fade-up 0.9s var(--ease-out) 0.16s both;
+  }
+}
+
+/* ------------------------------------------------------ scroll reveal ----- */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Sideways entry for the paired media panels. */
+  .js .media-panel.reveal {
+    transform: translateX(-26px);
+  }
+  .js .media-panel.reveal.is-in {
+    transform: none;
+  }
+
+  /* Stagger inside grids that do not carry an explicit index. */
+  .js .industry-grid > .reveal:nth-child(2),
+  .js .cols-3 > .reveal:nth-child(2),
+  .js .cols-2 > .reveal:nth-child(2) {
+    transition-delay: 70ms;
+  }
+  .js .industry-grid > .reveal:nth-child(3),
+  .js .cols-3 > .reveal:nth-child(3) {
+    transition-delay: 140ms;
+  }
+  .js .industry-grid > .reveal:nth-child(4),
+  .js .cols-3 > .reveal:nth-child(4) {
+    transition-delay: 70ms;
+  }
+  .js .industry-grid > .reveal:nth-child(5),
+  .js .cols-3 > .reveal:nth-child(5) {
+    transition-delay: 140ms;
+  }
+  .js .industry-grid > .reveal:nth-child(6),
+  .js .cols-3 > .reveal:nth-child(6) {
+    transition-delay: 210ms;
+  }
+}
+
+/* ------------------------------------------------------------ chrome ----- */
+
+/* Header: the logo settles slightly once the page is scrolled. */
+.brandlogo {
+  display: block;
+  height: 27px;
+  width: auto;
+  transition: transform 0.4s var(--ease);
+}
+
+.site-header.is-stuck .brandlogo {
+  transform: scale(0.94);
+}
+
+/* Navigation underline sweeps in from the left. */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0.72rem;
+  right: 0.72rem;
+  bottom: 0.3rem;
+  height: 1.5px;
+  border-radius: 2px;
+  background: var(--sage-600);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.38s var(--ease);
+}
+
+.nav-link:hover::after,
+.nav-link[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+.nav-link.is-active::after {
+  transform: scaleX(1);
+}
+
+/* Mega-menu: columns and promo rise in sequence. */
+.mm-col,
+.mm-promo {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out);
+}
+
+.nav-item.has-menu:hover .mm-col,
+.nav-item.has-menu:focus-within .mm-col,
+.nav-item.has-menu:hover .mm-promo,
+.nav-item.has-menu:focus-within .mm-promo {
+  opacity: 1;
+  transform: none;
+}
+
+.mm-col:nth-child(2) {
+  transition-delay: 0.05s;
+}
+
+.mm-col:nth-child(3) {
+  transition-delay: 0.1s;
+}
+
+.mm-promo {
+  transition-delay: 0.14s;
+}
+
+/* Buttons: a light sweep across the fill on hover. */
+.btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(100deg, transparent 20%, rgba(255, 255, 255, 0.16) 50%, transparent 80%);
+  transform: translateX(-120%);
+  transition: transform 0.7s var(--ease-out);
+}
+
+.btn:hover::before {
+  transform: translateX(120%);
+}
+
+.btn--secondary::before {
+  background: linear-gradient(100deg, transparent 20%, rgba(46, 107, 85, 0.1) 50%, transparent 80%);
+}
+
+/* ------------------------------------------------------------- cards ----- */
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .product-card-link {
+    transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    transition: transform 0.4s var(--ease-out), border-color 0.3s var(--ease), box-shadow 0.4s var(--ease-out);
+    will-change: transform;
+  }
+
+  .product-card-link:hover {
+    transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-4px);
+  }
+
+  /* Pointer-tracked highlight. */
+  .product-card-link::after {
+    inset: 0;
+    right: auto;
+    top: auto;
+    width: auto;
+    height: auto;
+    border-radius: inherit;
+    background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 0%), var(--a1), transparent 68%);
+    opacity: 0;
+    transition: opacity 0.3s var(--ease);
+  }
+
+  .product-card-link:hover::after {
+    opacity: 0.12;
+  }
+
+  .service-card .sc-icon,
+  .industry-tile .it-icon {
+    transition: transform 0.4s var(--ease-out), background 0.3s var(--ease), color 0.3s var(--ease);
+  }
+
+  .service-card:hover .sc-icon {
+    transform: translateY(-2px) rotate(-4deg);
+  }
+
+  .industry-tile:hover .it-icon {
+    transform: translateY(-2px);
+  }
+}
+
+/* Insight card title underline. */
+.ic-title a {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.35s var(--ease);
+}
+
+.insight-card:hover .ic-title a {
+  background-size: 100% 1px;
+}
+
+/* --------------------------------------------------------- decorative ---- */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* The dashed rings drift slowly; the ECG path stays level. */
+  .pd-arcs circle {
+    animation: au-dash-drift 44s linear infinite;
+  }
+}
+
+@keyframes au-dash-drift {
+  to {
+    stroke-dashoffset: -220;
+  }
+}
+
+/* The proof-strip numbers tick up; the element keeps its final value for AT. */
+.proof-value [data-count] {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+}

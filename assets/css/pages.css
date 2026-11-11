@@ -383,19 +383,23 @@
   border-color: #d7e8dc;
 }
 
-.phone-bars {
+/* form / strength / class chips along the bottom of the mock */
+.phone-meta {
   display: flex;
-  align-items: flex-end;
-  gap: 3px;
-  height: 22px;
-  padding-top: 4px;
+  gap: 4px;
+  padding-top: 3px;
 }
 
-.phone-bars i {
-  flex: 1;
-  border-radius: 2px 2px 0 0;
-  background: linear-gradient(180deg, var(--sage-500), var(--sage-700));
-  opacity: 0.85;
+.phone-meta span {
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--sage-700);
+  background: var(--sage-50);
+  border: 1px solid var(--sage-100);
+  border-radius: 99px;
+  padding: 2px 5px;
+  white-space: nowrap;
 }
 
 /* Floating chips around the composition */

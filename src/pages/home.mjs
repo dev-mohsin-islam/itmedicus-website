@@ -69,15 +69,15 @@ function heroVisual() {
         <div class="phone-notch"></div>
         <div class="phone-screen">
           <div class="phone-head">
-            <p class="phone-head-k">PDM · Clinical</p>
-            <p class="phone-head-t">Acute chest pain</p>
+            <p class="phone-head-k">DIMS · Medicine</p>
+            <p class="phone-head-t">Amlodipine 5 mg</p>
           </div>
           <div class="phone-body">
-            <div class="phone-tile phone-tile--clay"><b>Assessment</b><span>ABCDE · 12-lead ECG</span></div>
-            <div class="phone-tile"><b>Differential</b><span>ACS · PE · dissection</span></div>
-            <div class="phone-tile"><b>Management</b><span>Analgesia · reperfusion</span></div>
-            <div class="phone-bars">
-              <i style="height:40%"></i><i style="height:70%"></i><i style="height:55%"></i><i style="height:90%"></i><i style="height:62%"></i><i style="height:78%"></i>
+            <div class="phone-tile phone-tile--clay"><b>Indications</b><span>Hypertension · angina</span></div>
+            <div class="phone-tile"><b>Dosage</b><span>5 mg once daily</span></div>
+            <div class="phone-tile"><b>Class</b><span>Calcium channel blocker</span></div>
+            <div class="phone-meta">
+              <span>Tablet</span><span>5 mg</span><span>Generic</span>
             </div>
           </div>
         </div>
@@ -86,7 +86,7 @@ function heroVisual() {
       <span class="hv-chip hv-chip--a">${icon('check')}Since 2011</span>
       <span class="hv-chip hv-chip--b">${icon('layers')}Android · iOS · Web · Windows</span>
 
-      <p class="hv-caption">Illustrative interface preview — DIMS and PDM</p>
+      <p class="hv-caption">Illustrative interface preview — DIMS</p>
     </div>`;
 }
 

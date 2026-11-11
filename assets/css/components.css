@@ -1672,3 +1672,83 @@ details[open] .acc-mark {
     height: 24px;
   }
 }
+
+/* -------------------------------------------------- floating WhatsApp ---- */
+
+.wa-float {
+  position: fixed;
+  right: max(1.1rem, env(safe-area-inset-right));
+  bottom: max(1.1rem, env(safe-area-inset-bottom));
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #fff;
+  box-shadow: 0 14px 30px -12px rgba(8, 28, 23, 0.6), 0 2px 6px rgba(8, 28, 23, 0.15);
+  transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease);
+}
+
+.wa-float:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 18px 34px -12px rgba(8, 28, 23, 0.6), 0 3px 8px rgba(8, 28, 23, 0.18);
+}
+
+.wa-float:focus-visible {
+  outline: 2px solid var(--pine-800);
+  outline-offset: 3px;
+}
+
+.wa-float-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.wa-float-tip {
+  position: absolute;
+  right: calc(100% + 0.65rem);
+  top: 50%;
+  transform: translate(6px, -50%);
+  padding: 0.42rem 0.7rem;
+  border-radius: 8px;
+  background: var(--pine-800);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s var(--ease), transform 0.2s var(--ease);
+}
+
+.wa-float:hover .wa-float-tip,
+.wa-float:focus-visible .wa-float-tip {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+/* Never sit on top of the open mobile menu. */
+body.is-locked .wa-float {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 767px) {
+  .wa-float {
+    width: 52px;
+    height: 52px;
+    right: max(0.9rem, env(safe-area-inset-right));
+    bottom: max(0.9rem, env(safe-area-inset-bottom));
+  }
+
+  .wa-float-icon {
+    width: 27px;
+    height: 27px;
+  }
+
+  .wa-float-tip {
+    display: none;
+  }
+}

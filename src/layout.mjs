@@ -53,6 +53,8 @@ const PATHS = {
     '<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M18 16.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/>',
   external: '<path d="M14 4h6v6"/><path d="M20 4l-8.5 8.5"/><path d="M18 14.5V19a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 19V7.5A1.5 1.5 0 0 1 5 6h4.5"/>',
   clock: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>',
+  whatsapp:
+    '<path d="M12.04 2.1a9.9 9.9 0 0 0-8.5 14.96L2.1 22l5.06-1.4a9.9 9.9 0 1 0 4.88-18.5zm0 1.8a8.1 8.1 0 0 1 0 16.2 8 8 0 0 1-4.1-1.12l-.3-.18-3 .83.82-2.92-.19-.3A8.1 8.1 0 0 1 12.04 3.9zm-3.3 3.9c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.23.9 2.42 1.03 2.59.13.17 1.75 2.8 4.32 3.8 2.14.85 2.58.68 3.04.64.47-.04 1.5-.62 1.72-1.21.21-.6.21-1.1.15-1.21-.06-.11-.24-.17-.5-.3-.26-.13-1.5-.74-1.73-.83-.23-.08-.4-.12-.57.13-.17.25-.66.83-.81.99-.15.17-.3.19-.55.07-.26-.13-1.1-.41-2.1-1.3-.78-.7-1.3-1.55-1.45-1.81-.15-.26-.02-.4.11-.53.12-.12.26-.3.39-.46.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.06-.13-.55-1.4-.76-1.9-.2-.5-.4-.43-.55-.44h-.5z"/>',
   alert: '<path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17.2h.01"/>',
   download: '<path d="M12 3.5v11"/><path d="M7.5 10l4.5 4.5 4.5-4.5"/><path d="M4 20.5h16"/>',
   globe: '<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5a13 13 0 0 1 0 17 13 13 0 0 1 0-17z"/>',
@@ -64,9 +66,15 @@ const PATHS = {
   eye: '<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/>',
 };
 
+// Brand glyphs are drawn as solid shapes, not strokes.
+const FILLED = new Set(['whatsapp']);
+
 export function icon(name, cls = 'ico') {
   const body = PATHS[name] || PATHS.sparkle;
-  return `<svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${body}</svg>`;
+  const paint = FILLED.has(name)
+    ? 'fill="currentColor" stroke="none"'
+    : 'fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"';
+  return `<svg class="${cls}" viewBox="0 0 24 24" ${paint} aria-hidden="true" focusable="false">${body}</svg>`;
 }
 
 const SOCIAL_PATHS = {
@@ -196,7 +204,7 @@ export function header(current = '/') {
       <a class="btn btn--primary btn--block" href="/contact/">Contact Us</a>
       <div class="mobile-contact">
         <a href="mailto:${site.email}">${site.email}</a>
-        <a href="tel:${site.phoneHref}">${site.phone}</a>
+        <a href="${site.whatsappHref}" target="_blank" rel="noopener">WhatsApp</a>
       </div>
     </div>
   </div>`;
@@ -251,7 +259,7 @@ export function footer() {
           <h2 class="footer-title">Get in touch</h2>
           <ul class="footer-contact">
             <li>${icon('mail')}<a href="mailto:${site.email}">${site.email}</a></li>
-            <li>${icon('phone-call')}<a href="tel:${site.phoneHref}">${site.phone}</a></li>
+            <li>${icon('whatsapp')}<a href="${site.whatsappHref}" target="_blank" rel="noopener">WhatsApp us</a></li>
             <li>${icon('pin')}<address>${site.address.line1}<br>${site.address.line2}<br>${site.address.city}, ${
               site.address.country
             }</address></li>
@@ -423,7 +431,6 @@ export function siteGraph() {
     description: site.description,
     foundingDate: String(site.founded),
     email: site.email,
-    telephone: site.phone,
     address: {
       '@type': 'PostalAddress',
       streetAddress: `${site.address.line1}, ${site.address.line2}`,
@@ -457,6 +464,17 @@ export function siteGraph() {
     '@context': 'https://schema.org',
     '@graph': [org, website],
   })}</script>`;
+}
+
+/**
+ * Persistent WhatsApp action. The number stays inside the link, never on screen.
+ */
+export function whatsappFab() {
+  return `<a class="wa-float" href="${site.whatsappHref}" target="_blank" rel="noopener"
+      aria-label="Chat with ${site.name} on WhatsApp">
+      ${icon('whatsapp', 'ico wa-float-icon')}
+      <span class="wa-float-tip" aria-hidden="true">Chat on WhatsApp</span>
+    </a>`;
 }
 
 export function doc({ title, description, path, body, bodyClass = '', jsonLd = null, ogType = 'website' }) {
@@ -502,6 +520,7 @@ ${header(path)}
 ${body}
 </main>
 ${footer()}
+${whatsappFab()}
 <script src="/assets/js/main.js" defer></script>
 </body>
 </html>`;

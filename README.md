@@ -291,6 +291,14 @@ Current state: **0 findings across 21 page/width combinations.**
 
 ---
 
+## Contact
+
+The phone number is intentionally **not published**. Visitors reach the company by
+email, the contact form, or a floating WhatsApp button present on every page
+(`wa.me/8801856250187`). The number lives only inside that link.
+
+To change it, edit `site.whatsapp` / `site.whatsappHref` in `src/content.mjs`.
+
 ## Contact form
 
 The form validates on the client (required fields, email format, consent) and shows

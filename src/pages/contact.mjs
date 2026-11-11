@@ -70,7 +70,7 @@ export function contactPage() {
             </div>
             <div class="field">
               <label for="phone">Phone number <span class="opt">optional</span></label>
-              <input class="input" type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="+880 1XXX-XXXXXX">
+              <input class="input" type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="01XXX-XXXXXX">
             </div>
           </div>
 
@@ -118,8 +118,8 @@ export function contactPage() {
             <p class="form-note" style="margin-bottom:1rem">
               JavaScript is disabled in this browser, so the form cannot validate your details.
               You can still send this message directly to
-              <a href="mailto:info@itmedicus.com">info@itmedicus.com</a> or call
-              <a href="tel:+8801856250187">+880 1856-250187</a>.
+              <a href="mailto:info@itmedicus.com">info@itmedicus.com</a> or message us on
+              <a href="${site.whatsappHref}" target="_blank" rel="noopener">WhatsApp</a>.
             </p>
           </noscript>
 
@@ -137,9 +137,12 @@ export function contactPage() {
         </div>
 
         <div class="contact-block">
-          <h3><span class="cb-icon">${icon('phone-call')}</span>Call us</h3>
-          <p style="margin-bottom:.7rem"><a href="tel:${site.phoneHref}" style="font-size:1.02rem;font-weight:600">${site.phone}</a></p>
-          <div class="hours"><span>Sunday – Thursday</span><span>10:00 – 18:00</span></div>
+          <h3><span class="cb-icon">${icon('whatsapp')}</span>WhatsApp</h3>
+          <p style="margin-bottom:.9rem">The quickest route for a short question — no phone number needed.</p>
+          <a class="btn btn--primary btn--sm" href="${site.whatsappHref}" target="_blank" rel="noopener">
+            Chat on WhatsApp ${icon('arrow-up-right', 'ico btn-ico')}
+          </a>
+          <div class="hours" style="margin-top:1.1rem"><span>Sunday – Thursday</span><span>10:00 – 18:00</span></div>
           <div class="hours"><span>Friday – Saturday</span><span>Closed</span></div>
         </div>
 
@@ -245,7 +248,6 @@ export function contactPage() {
         '@type': 'Organization',
         name: site.name,
         email: site.email,
-        telephone: site.phone,
         address: {
           '@type': 'PostalAddress',
           streetAddress: site.address.line1 + ', ' + site.address.line2,

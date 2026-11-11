@@ -185,7 +185,7 @@ export function productPage(product) {
             </p>
             <ul class="side-list" style="max-width:26rem">
               <li><span class="side-k">Support email</span><a class="side-v" href="mailto:${site.supportEmail}">${site.supportEmail}</a></li>
-              <li><span class="side-k">Telephone</span><a class="side-v" href="tel:${site.phoneHref}">${site.phone}</a></li>
+              <li><span class="side-k">WhatsApp</span><a class="side-v" href="${site.whatsappHref}" target="_blank" rel="noopener" style="display:inline-block;padding-block:.2rem">Chat now</a></li>
               <li><span class="side-k">Privacy</span><a class="side-v" href="/privacy/">Privacy policy</a></li>
             </ul>
           </div>
@@ -229,7 +229,7 @@ export function productPage(product) {
             ${btn({ href: '/contact/', label: 'Contact us', variant: 'ghost-light', cls: 'btn--block' })}
             <div class="side-links">
               <a href="mailto:${site.email}">${icon('mail')}${site.email}</a>
-              <a href="tel:${site.phoneHref}">${icon('phone-call')}${site.phone}</a>
+              <a href="${site.whatsappHref}" target="_blank" rel="noopener">${icon('whatsapp')}WhatsApp</a>
             </div>
           </div>
         </aside>

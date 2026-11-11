@@ -15,7 +15,7 @@ one-line edit in `src/content.mjs` followed by `node build.mjs`.
 | --- | --- | --- | --- |
 | 1.1 | **Legal entity name** | `site.legalName`, footer copyright | Uses `ITmedicus`. Blueprint flags that the exact legal name is unconfirmed. |
 | 1.2 | **Registered / public office address** | `site.address`, contact page, footer | `F: 8/B, H:31, Eastern Housing, Basherpul, Demra, Dhaka` — taken from the existing website and flagged in the blueprint as needing confirmation. |
-| 1.3 | **Telephone number** | `site.phone` | `+880 1856-250187` — taken from the existing website; confirm it is active and the correct public line. |
+| 1.3 | **Telephone number — hidden by request** | `site.whatsapp`, `site.whatsappHref` | The phone number is **not published anywhere on the site**, including the structured data. Enquiries route through WhatsApp (`wa.me/8801856250187`) or email. Confirm the WhatsApp number is the right one for customer chat, and note that the number is still visible inside the `wa.me` link — unavoidable for WhatsApp to work. |
 | 1.4 | **Enquiry email** | `site.email`, `site.supportEmail` | Both set to `info@itmedicus.com`. Confirm a monitored inbox, and whether product support should have a separate address. |
 | 1.5 | **Privacy policy and terms of use** | `/privacy/`, `/terms/` | Drafted as a structured starting point, with a visible "Draft for review" notice on both pages. **Must be reviewed by legal counsel**, then that notice removed (search `legal-note` in `src/pages/legal.mjs`). |
 | 1.6 | **Domain** | `site.origin` | Assumes `https://itmedicus.com`. Change once if the launch domain differs, then rebuild so canonical URLs, sitemap and OG tags follow. |
@@ -35,6 +35,8 @@ one-line edit in `src/content.mjs` followed by `node build.mjs`.
 | 1b.3 | **Direct Play Store links** | `storeUrl` per product | DIMS, PDM, Patient Aid and DIMS Vet now link to their own store listings (package IDs taken from the products' own site links). Pharmacy Plus, SkinVD, Med Dictionary and mDoctor Agent have no confirmed package ID and still point at the developer profile. |
 | 1b.4 | **Legal name** | `site.legalName` | Set to **ITmedicus Solutions**, which is how the company names itself on the DIMS and PDM about pages. It is used in the footer and as the structured-data `legalName` / `alternateName`, so searching either "ITmedicus" or "ITmedicus Solutions" matches. Confirm the registered entity name. |
 | 1b.5 | **DIMS Gateway** | pharmaceuticals service copy | The pharmaceutical service now mentions DIMS Gateway registration (a company maintaining its own product data) — taken from the DIMS pharmaceuticals page. Confirm you want this promoted on the corporate site. |
+
+| 1.3a | **WhatsApp button** | `whatsappFab()` in `src/layout.mjs` | A floating chat button appears on every page, plus a WhatsApp block on the contact page, footer and product sidebars. If you would rather it appear only on the contact page, remove the `${whatsappFab()}` call from `doc()`. |
 
 ## 2. Product accuracy
 

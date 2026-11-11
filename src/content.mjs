@@ -18,8 +18,10 @@ export const site = {
   origin: 'https://itmedicus.com',
   email: 'info@itmedicus.com',
   supportEmail: 'info@itmedicus.com',
-  phone: '+880 1856-250187',
-  phoneHref: '+8801856250187',
+  // The phone number is deliberately not published. Enquiries route through
+  // WhatsApp (no number shown) or email.
+  whatsapp: '8801856250187',
+  whatsappHref: 'https://wa.me/8801856250187',
   address: {
     line1: 'F: 8/B, H:31, Eastern Housing',
     line2: 'Basherpul, Demra',

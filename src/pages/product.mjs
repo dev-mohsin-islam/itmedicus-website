@@ -86,6 +86,26 @@ export function productPage(product) {
             </div>
           </div>
         </div>
+
+        ${
+          product.stats
+            ? `<div class="pd-stats">
+          <div class="pd-stat">
+            <p class="pd-stat-v">${product.stats.downloadsLabel}</p>
+            <p class="pd-stat-k">${product.stats.source} downloads</p>
+          </div>
+          <div class="pd-stat">
+            <p class="pd-stat-v">${product.stats.rating}<span class="pd-stat-star">★</span></p>
+            <p class="pd-stat-k">Average rating</p>
+          </div>
+          <div class="pd-stat">
+            <p class="pd-stat-v">${product.stats.reviewsLabel}</p>
+            <p class="pd-stat-k">User reviews</p>
+          </div>
+          <p class="pd-stat-note">${product.stats.source}, as of ${product.stats.asOf}</p>
+        </div>`
+            : ''
+        }
       </div>
     </section>
 
@@ -278,6 +298,22 @@ export function productPage(product) {
       url: `https://itmedicus.com/products/${product.slug}/`,
       publisher: { '@type': 'Organization', name: site.name },
       ...(product.logo ? { image: `https://itmedicus.com${product.logo}` } : {}),
+      ...(product.stats
+        ? {
+            aggregateRating: {
+              '@type': 'AggregateRating',
+              ratingValue: String(product.stats.rating),
+              reviewCount: String(product.stats.reviews),
+              bestRating: '5',
+              worstRating: '1',
+            },
+            interactionStatistic: {
+              '@type': 'InteractionCounter',
+              interactionType: 'https://schema.org/DownloadAction',
+              userInteractionCount: product.stats.downloads,
+            },
+          }
+        : {}),
       ...(product.pricing
         ? {
             isAccessibleForFree: true,

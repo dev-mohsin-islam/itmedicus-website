@@ -114,6 +114,15 @@ export const products = [
       'Offline access to core content',
       'Desktop and web availability',
     ],
+    stats: {
+      downloads: 7000000,
+      downloadsLabel: '7M+',
+      rating: 4.6,
+      reviews: 150000,
+      reviewsLabel: '150k+',
+      asOf: 'November 2026',
+      source: 'Google Play',
+    },
     pricing: {
       headline: 'Free to use. Premium adds clinical depth.',
       summary:
@@ -194,6 +203,15 @@ export const products = [
       'Medicine information for the public',
       'Personal health organisation',
     ],
+    stats: {
+      downloads: 3000000,
+      downloadsLabel: '3M+',
+      rating: 4.5,
+      reviews: 150000,
+      reviewsLabel: '150k+',
+      asOf: 'November 2026',
+      source: 'Google Play',
+    },
     pricing: {
       headline: 'Free for everyone. Premium is optional.',
       summary:
@@ -1047,9 +1065,9 @@ export const differentiators = [
 
 export const proofPoints = [
   { value: '2011', label: 'Building healthcare technology since' },
+  { value: '10M+', label: 'App downloads on Google Play' },
+  { value: '4.6', label: 'DIMS rating on Google Play' },
   { value: '8', label: 'Digital products in the portfolio' },
-  { value: '4', label: 'Platforms across the portfolio: Android, iOS, web, Windows' },
-  { value: '3', label: 'Audiences: professionals, patients, pharma' },
 ];
 
 export const faqs = [

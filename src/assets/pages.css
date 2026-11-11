@@ -1054,6 +1054,59 @@
   color: var(--sage-300);
 }
 
+
+/* ---------------------------------------------------------- app metrics --- */
+
+.pd-stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.2rem clamp(1.5rem, 4vw, 3.4rem);
+  margin-top: clamp(1.6rem, 3vw, 2.4rem);
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.pd-stat-v {
+  font-family: var(--ff-display);
+  font-size: clamp(1.5rem, 1.2rem + 0.9vw, 1.95rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.pd-stat-star {
+  font-size: 0.62em;
+  color: var(--clay);
+  margin-left: 0.12em;
+  vertical-align: 0.1em;
+}
+
+.pd-stat-k {
+  margin-top: 0.35rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.pd-stat-note {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+@media (max-width: 760px) {
+  .pd-stats {
+    gap: 1.1rem 1.6rem;
+  }
+
+  .pd-stat-note {
+    margin-left: 0;
+    flex-basis: 100%;
+    order: 9;
+  }
+}
+
 /* Sticky sidebar */
 
 .pd-side {

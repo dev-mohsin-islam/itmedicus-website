@@ -82,6 +82,25 @@ feature themes it lists. It deliberately avoids specifics it cannot support.
 
 ## 4. Claims and metrics
 
+- [x] **App statistics published** — supplied 11 Nov 2026 and now shown on the DIMS
+      and Patient Aid product pages, the homepage strip, and in structured data
+      (`aggregateRating` + `interactionStatistic`):
+
+      | App | Downloads | Rating | Reviews |
+      | --- | --- | --- | --- |
+      | DIMS | 7M+ | 4.6 | 150k+ |
+      | Patient Aid | 3M+ | 4.5 | 150k+ |
+
+      4.5 was supplied as "4.5+"; it is published as **4.5** because a rating is a
+      single value, not a range.
+- [ ] **Keep them current.** Each store page states "Google Play, as of November
+      2026". Update `stats` in `src/content.mjs` (and the `asOf` date) whenever the
+      figures move — stale numbers are worse than none. Suggested cadence: quarterly.
+- [ ] **Confirm the source and permission.** These figures are assumed to come from
+      the Google Play listings; confirm before launch, and confirm the review counts
+      are total reviews rather than ratings.
+
+
 - [x] No download counts, ratings, user numbers or customer names are published.
       The homepage proof strip uses only facts visible in the blueprint: founding year,
       product count, platform range and audience range.
